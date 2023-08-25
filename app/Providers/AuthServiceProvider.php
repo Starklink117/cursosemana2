@@ -5,6 +5,9 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+//Agragamos esto para el super usuario
+use Illuminate\Support\Facades\Gate;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -22,5 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Gate::before(function ($user, $ability) {
+            return $user->email == 'utp0145531@alumno.utpuebla.edu.mx' ?? null;
+        });
     }
 }
